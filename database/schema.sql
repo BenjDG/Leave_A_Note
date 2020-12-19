@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS leaveANote_db;
+CREATE DATABASE leaveANote_db;
