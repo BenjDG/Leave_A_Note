@@ -27,12 +27,12 @@ module.exports = function (sequelize, DataTypes) {
   });
   // Associate User with Nots
   // When a User is deleted, also delete any associated Notes
-  User.associate = (models) => {
+  User.associate = models => {
     User.hasMany(models.Note, {
       onDelete: 'cascade'
     });
   };
-  User.associate = (models) => {
+  User.associate = models => {
     User.belongsTo(models.Group, {
       foreignKey: {
         name: models.Group.id
