@@ -29,7 +29,7 @@ module.exports = function (sequelize, DataTypes) {
   // When a User is deleted, also delete any associated Notes
   User.associate = (models) => {
     User.hasMany(models.Note, {
-      onDelete: "cascade"
+      onDelete: 'cascade'
     });
   };
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
