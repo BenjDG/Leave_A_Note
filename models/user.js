@@ -16,13 +16,6 @@ module.exports = function (sequelize, DataTypes) {
     password: {
       type: DataTypes.STRING,
       allowNull: false
-    },
-    // ID cannot be nulland must be unique
-    id: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      primaryKey: true
     }
   });
   // Associate User with Nots
