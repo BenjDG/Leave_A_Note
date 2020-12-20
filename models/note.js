@@ -14,18 +14,13 @@ module.exports = function (sequelize, DataTypes) {
       validate: {
         len: [1]
       }
-    },
-    id: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      primaryKey: true
     }
   });
 
-  Note.associate = (models) => {
+  Note.associate = models => {
     Note.belongsTo(models.User, {
       foreignKey: {
+        name: models.User.id,
         allowNull: false
       }
     });
