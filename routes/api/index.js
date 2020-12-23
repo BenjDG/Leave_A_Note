@@ -2,7 +2,6 @@ const router = require('express').Router();
 // Requiring our models and passport as we've configured it
 const db = require('../../models');
 const passport = require('../../config/passport');
-const { v4: uuidv4 } = require('uuid');
 
 // Using the passport.authenticate middleware with our local strategy.
 // If the user has valid login credentials, send them to the members page.
@@ -19,7 +18,6 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
 // otherwise send back an error
 router.post('/signup', (req, res) => {
-  req.body.id = uuidv4();
   db.User.create(req.body)
     .then(() => {
       res.redirect(307, '/api/login');

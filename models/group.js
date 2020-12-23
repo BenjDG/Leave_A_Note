@@ -1,5 +1,3 @@
-// const note = require("./note");
-
 module.exports = function (sequelize, DataTypes) {
   const Group = sequelize.define('Group', {
     name: {
