@@ -16,6 +16,16 @@ module.exports = function (sequelize, DataTypes) {
     password: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    first_name: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: false
+    },
+    last_name: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: false
     }
   });
   // Associate User with Nots
