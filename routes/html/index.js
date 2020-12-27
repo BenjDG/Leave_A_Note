@@ -10,8 +10,8 @@ router.get('/', (req, res) => {
     res.redirect('/members');
   }
 
-  //res.sendFile(path.join(__dirname, '../../public/signup.html'));
-  res.render("signup");
+  // res.sendFile(path.join(__dirname, '../../public/signup.html'));
+  res.render('signup');
 });
 
 router.get('/login', (req, res) => {
@@ -20,8 +20,8 @@ router.get('/login', (req, res) => {
     res.redirect('/members');
   }
 
-  //res.sendFile(path.join(__dirname, '../../public/login.html'));
-  res.render("login");
+  // res.sendFile(path.join(__dirname, '../../public/login.html'));
+  res.render('login');
 });
 
 // Route for logging user out
