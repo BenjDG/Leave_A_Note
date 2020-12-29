@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
+const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const morgan = require('morgan');
 // Requiring passport as we've configured it
@@ -29,8 +30,6 @@ app.use(
     contentSecurityPolicy: false
   })
 );
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 app.use(express.static('public'));
 // We need to use sessions to keep track of our user's login status
 app.use(
@@ -40,9 +39,13 @@ app.use(
     saveUninitialized: true
   })
 );
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(morgan('tiny'));
+// morgan is used for server console logging
+app.use(morgan('dev'));
 
 // Requiring our routes
 app.use(routes);
