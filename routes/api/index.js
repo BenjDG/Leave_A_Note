@@ -13,7 +13,7 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
     id: req.user.id
   });
 });
-// using the passport.authenticate middleware with 
+// using the passport.authenticate middleware with
 
 // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
 // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
