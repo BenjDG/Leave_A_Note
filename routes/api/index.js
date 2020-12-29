@@ -22,7 +22,7 @@ router.post('/signup', (req, res) => {
     .then(() => {
       res.redirect(307, '/api/login');
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(401).json(err);
     });
 });
@@ -37,6 +37,15 @@ router.get('/user_data', (req, res) => {
   // Sending back a password, even a hashed password, isn't a good idea
   const { password, ...user } = req.user;
   res.json(user);
+});
+
+// Route for getting data about notes to be used client side
+router.get('/note_data', (req, res) => {
+  // If user is not logged in, send back an empty object
+  if (!req.user) {
+    return res.json({});
+  }
+  // Otherwise, send back the user's note
 });
 
 module.exports = router;
