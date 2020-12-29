@@ -1,5 +1,3 @@
-const $ = window.$;
-
 $(document).ready(() => {
   // Getting references to our form and input
   const signupButton = $('#signup');
@@ -9,8 +7,9 @@ $(document).ready(() => {
   const password = $('#password');
 
   // When the signup button is clicked, we validate the email and password, firstname , lastname are not blank
-  signupButton.on('submit', event => {
+  signupButton.on('click', event => {
     event.preventDefault();
+    console.log('click');
     const userData = {
       firstName: firstName.val().trim(),
       lastName: lastName.val().trim(),
