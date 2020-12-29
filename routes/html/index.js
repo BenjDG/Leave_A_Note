@@ -1,5 +1,5 @@
 // Requiring path to so we can use relative routes to our HTML files
-const path = require('path');
+
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require('../../config/middleware/isAuthenticated');
 const router = require('express').Router();
@@ -10,7 +10,8 @@ router.get('/', (req, res) => {
     res.redirect('/members');
   }
 
-  res.sendFile(path.join(__dirname, '../../public/signup.html'));
+  // res.sendFile(path.join(__dirname, '../../public/signup.html'));
+  res.render('signup');
 });
 
 router.get('/login', (req, res) => {
@@ -19,7 +20,8 @@ router.get('/login', (req, res) => {
     res.redirect('/members');
   }
 
-  res.sendFile(path.join(__dirname, '../../public/login.html'));
+  // res.sendFile(path.join(__dirname, '../../public/login.html'));
+  res.render('login');
 });
 
 // Route for logging user out
@@ -31,7 +33,8 @@ router.get('/logout', (req, res) => {
 // Here we've add our isAuthenticated middleware to this route.
 // If a user who is not logged in tries to access this route they will be redirected to the signup page
 router.get('/members', isAuthenticated, (_req, res) => {
-  res.sendFile(path.join(__dirname, '../../public/members.html'));
+  // res.sendFile(path.join(__dirname, '../../public/members.html'));
+  res.render('members');
 });
 
 module.exports = router;
