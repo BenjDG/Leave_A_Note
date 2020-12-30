@@ -7,7 +7,7 @@ const router = require('express').Router();
 router.get('/', (req, res) => {
   // If the user already has an account send them to the members page
   if (req.user) {
-    res.redirect('/members');
+    res.redirect('/notes');
   }
 
   // res.sendFile(path.join(__dirname, '../../public/signup.html'));
@@ -17,10 +17,8 @@ router.get('/', (req, res) => {
 router.get('/login', (req, res) => {
   // If the user already has an account send them to the members page
   if (req.user) {
-    res.redirect('/members');
+    res.redirect('/notes');
   }
-
-  // res.sendFile(path.join(__dirname, '../../public/login.html'));
   res.render('login');
 });
 
@@ -32,9 +30,8 @@ router.get('/logout', (req, res) => {
 
 // Here we've add our isAuthenticated middleware to this route.
 // If a user who is not logged in tries to access this route they will be redirected to the signup page
-router.get('/members', isAuthenticated, (_req, res) => {
-  // res.sendFile(path.join(__dirname, '../../public/members.html'));
-  res.render('members');
+router.get('/notes', isAuthenticated, (_req, res) => {
+  res.render('notes');
 });
 
 module.exports = router;
