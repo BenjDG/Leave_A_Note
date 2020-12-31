@@ -9,6 +9,7 @@ const morgan = require('morgan');
 // Requiring passport as we've configured it
 const passport = require('./config/passport');
 const routes = require('./routes');
+const seed = require('./database/autoSeed');
 
 // Setting up port and requiring models for syncing
 const PORT = process.env.PORT || 8080;
@@ -51,12 +52,14 @@ app.use(morgan('dev'));
 app.use(routes);
 
 // Syncing our database and logging a message to the user upon success
-db.sequelize.sync(SYNC_OPTIONS).then(() => {
-  app.listen(PORT, () => {
-    console.log(
-      '==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.',
-      PORT,
-      PORT
-    );
+db.sequelize.sync(SYNC_OPTIONS)
+  .then(() => seed())
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(
+        '==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.',
+        PORT,
+        PORT
+      );
+    });
   });
-});

@@ -39,8 +39,8 @@ $(document).ready(() => {
     $.post('/api/signup', {
       email: email,
       password: password,
-      firstName: firstName,
-      lastName: lastName
+      first_name: firstName,
+      last_name: lastName
     })
       .then(() => {
         window.location.replace('/members');
