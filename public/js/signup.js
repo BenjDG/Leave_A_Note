@@ -43,7 +43,7 @@ $(document).ready(() => {
       last_name: lastName
     })
       .then(() => {
-        window.location.replace('/members');
+        window.location.replace('/notes');
         // If there's an error, handle it by throwing up a alert
       })
       .catch(handleLoginErr);
