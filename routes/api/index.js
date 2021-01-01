@@ -43,11 +43,25 @@ router.get('/user_data', (req, res) => {
 
 // Route for getting data about notes to be used client side
 router.get('/note_data', (req, res) => {
+  console.log(req.user);
   // If user is not logged in, send back an empty object
   if (!req.user) {
     return res.json({});
   }
   // Otherwise, send back the user's note
+  // replace this section with db logic
+  res.json([
+    {
+      id: '1',
+      title: 'Feed Cat',
+      body: 'The cat needs fed.'
+    },
+    {
+      id: '2',
+      title: 'Feed Dog',
+      body: 'The dog needs fed.'
+    }
+  ]);
 });
 
 module.exports = router;
