@@ -7,7 +7,6 @@ module.exports = async function seed () {
     last_name: 'Doe',
     email: '1@2.com',
     password: process.env.JANE_PASSWORD
-
   });
   console.log("Jane's auto-generated ID:", jane.id);
 };
