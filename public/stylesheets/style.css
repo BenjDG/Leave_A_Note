@@ -15,11 +15,11 @@ form.login {
 #profile{
   font-size: 40px;
 }
-#first,#last,#lebelemail{
+#labelfirst,#labellast,#labelemail{
   font-size: 25px;
 }
 
-#firstname,#lastname,#useremail{
+#span_firstname,#span_lastname,#useremail{
    font-size: 20px;
    font-weight: 400;
 }
