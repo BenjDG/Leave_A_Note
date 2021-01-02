@@ -52,7 +52,8 @@ app.use(morgan('dev'));
 app.use(routes);
 
 // Syncing our database and logging a message to the user upon success
-db.sequelize.sync(SYNC_OPTIONS)
+db.sequelize
+  .sync(SYNC_OPTIONS)
   .then(() => seed())
   .then(() => {
     app.listen(PORT, () => {
