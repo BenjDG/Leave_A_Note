@@ -59,6 +59,9 @@ router
     db.Note.create({
       title: req.title,
       body: req.body,
+    }).then((err, data) => {
+      if (err) throw err;
+      res.json(data);
     });
   });
 
