@@ -1,0 +1,49 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <img class="logo" src="./img/note1.jpg" alt="logo">
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            <a id="note-nav" class="navbar-item">
+                Note
+            </a>
+
+            <a id="profile-nav" class="navbar-item">
+                Profile
+            </a>
+        </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a id="logout" class="button is-primary">
+                        <strong>Log Out</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<main>
+
+    <div class="container has-text-centered">
+        <label id="profile" class="label">My Profile</label>
+        <br>
+
+        <label id="first" class="label">First Name : <span id="firstname"></span> </label>
+
+        <label id="last" class="label">last Name : <span id="lastname"> </span> </label>
+
+        <label id="email" class="label">Email : <span id="useremail"></span> </label>
+    </div>
+</main>
+
+<script type="text/javascript" src="js/profile.js"> </script>
