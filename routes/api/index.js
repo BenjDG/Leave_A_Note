@@ -14,6 +14,7 @@ function loginCheck (req, res) {
 // Otherwise the user will be sent an error
 router.post('/login', passport.authenticate('local'), (req, res) => {
   // Sending back a password, even a hashed password, isn't a good idea
+  console.log(req.body);
   res.json({
     email: req.user.email,
     id: req.user.id
