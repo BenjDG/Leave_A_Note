@@ -14,8 +14,8 @@ $(document).ready(function () {
     // and updates the HTML on the page
     $.get('/api/user_data').then((data) => {
         console.log(data);
-        $('#firstname').text(data.firstName);
-        $('#lastname').text(data.lastName);
+        $('#firstname').text(data.first_name);
+        $('#lastname').text(data.last_name);
         $('#useremail').text(data.email);
     });
 
