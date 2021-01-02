@@ -8,6 +8,7 @@ const passport = require('../../config/passport');
 // Otherwise the user will be sent an error
 router.post('/login', passport.authenticate('local'), (req, res) => {
   // Sending back a password, even a hashed password, isn't a good idea
+  console.log(req.body);
   res.json({
     email: req.user.email,
     id: req.user.id
@@ -19,7 +20,6 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
 // otherwise send back an error
 router.post('/signup', (req, res) => {
-  console.log(req.body);
   db.User.create(req.body)
     .then(() => {
       res.redirect(307, '/api/login');
@@ -43,7 +43,6 @@ router.get('/user_data', (req, res) => {
 
 // Route for getting data about notes to be used client side
 router.get('/note_data', (req, res) => {
-  console.log(req.user);
   // If user is not logged in, send back an empty object
   if (!req.user) {
     return res.json({});
