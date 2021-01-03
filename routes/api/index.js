@@ -3,7 +3,7 @@ const router = require('express').Router();
 const db = require('../../models');
 const passport = require('../../config/passport');
 
-function loginCheck (req, res) {
+function loginCheck(req, res) {
   // If user is not logged in, send back an empty object
   if (!req.user) {
     return res.json({});
@@ -28,7 +28,7 @@ router.post('/signup', (req, res) => {
     .then(() => {
       res.redirect(307, '/api/login');
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(401).json(err);
     });
 });
@@ -43,26 +43,35 @@ router.get('/user_data', (req, res) => {
 });
 
 // Route for getting data about notes to be used client side
-router
-  .route('/note_data')
-  .get((req, res) => {
-    loginCheck(req, res);
-    // Otherwise, send back the user's note
-    db.Note.findAll().then((err, data) => {
-      if (err) throw err;
-      res.json(data);
-    });
-  })
-  .post((req, res) => {
-    loginCheck(req, res);
-    // Create a note
-    db.Note.create({
-      title: req.title,
-      body: req.body
-    }).then((err, data) => {
-      if (err) throw err;
-      res.json(data);
-    });
+router.route('/note_data').get((req, res) => {
+  loginCheck(req, res);
+  console.log(req.user);
+  const id = req.user.id;
+  // Otherwise, send back the user's note
+  db.Note.findAll({
+    where: {
+      id: id
+    }
   });
+});
+//     .then((err, data) => {
+//       if (err) throw err;
+//       res.json(data);
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//     });
+// });
+// .post((req, res) => {
+//   loginCheck(req, res);
+//   // Create a note
+//   db.Note.create({
+//     title: req.title,
+//     body: req.body
+//   }).then((err, data) => {
+//     if (err) throw err;
+//     res.json(data);
+//   });
+// });
 
 module.exports = router;

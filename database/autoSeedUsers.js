@@ -1,12 +1,6 @@
 require('dotenv').config();
 const db = require('../models');
 
-const testGroups = [
-  { name: 'Does' },
-  { name: 'Simpsons' },
-  { name: 'Cleavers' }
-];
-
 const testUsers = [
   {
     first_name: 'Jane',
@@ -80,31 +74,13 @@ const testUsers = [
   }
 ];
 
-const testNotes = [
-  {
-    title: "It's no secret!",
-    body: "I've been Amelia Earhart all along!",
-    UserId: 1
-  },
-  { title: 'Mmmm', body: 'Donuts', UserId: 2 },
-  { title: 'Cowabunga!', body: "Don't have a cow, man!", UserId: 4 },
-  { title: 'Shopping list', body: 'Eggs, milk, cheese, crackers', UserId: 6 },
-  { title: 'Leave it to me', body: "and my big ol' chompers", UserId: 9 }
-];
-
-module.exports = async function seed () {
-  testGroups.forEach(async group => {
-    const groupTemp = await db.Group.create(group);
-    console.log(`GroupId: ${groupTemp.id} created`);
-  });
-
+module.exports = async function seedUsers () {
   await testUsers.forEach(async user => {
-    const userTemp = await db.User.create(user);
-    console.log(`User Id: ${userTemp.id} created`);
-  });
-
-  await testNotes.forEach(async note => {
-    const noteTemp = await db.Note.create(note);
-    console.log(`Note Id: ${noteTemp.id} created`);
+    try {
+      const userTemp = await db.User.create(user);
+      console.log(`User Id: ${userTemp.id}: ${userTemp.email} created`);
+    } catch (err) {
+      console.error(err);
+    }
   });
 };
