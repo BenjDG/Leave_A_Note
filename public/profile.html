@@ -1,0 +1,97 @@
+<!-- moved to handlebars files -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- Font Awesome CSS -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&family=Raleway:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bulma CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./stylesheets/style.css" />
+
+    <title>Leave A Note</title>
+  </head>
+
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <img class="logo" src="./img/note1.jpg" alt="logo" />
+
+        <a
+          role="button"
+          class="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarBasicExample"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a id="note-nav" class="navbar-item">
+            Note
+          </a>
+
+          <a id="profile-nav" class="navbar-item">
+            Profile
+          </a>
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a id="logout" class="button is-primary">
+                <strong>Log Out</strong>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <div class="container has-text-centered">
+        <label id="profile" class="label">My Profile</label>
+        <br />
+
+        <label id="first" class="label"
+          >First Name : <span id="firstname"></span>
+        </label>
+
+        <label id="last" class="label"
+          >last Name : <span id="lastname"> </span>
+        </label>
+
+        <label id="email" class="label"
+          >Email : <span id="useremail"></span>
+        </label>
+      </div>
+    </main>
+
+    <script type="text/javascript" src="./js/profile.js"></script>
+  </body>
+</html>
