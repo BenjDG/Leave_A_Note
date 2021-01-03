@@ -3,7 +3,7 @@ const router = require('express').Router();
 const db = require('../../models');
 const passport = require('../../config/passport');
 
-function loginCheck(req, res) {
+function loginCheck (req, res) {
   // If user is not logged in, send back an empty object
   if (!req.user) {
     return res.json({});
@@ -50,14 +50,19 @@ router.route('/note_data').get((req, res) => {
   // Otherwise, send back the user's note
   db.Note.findAll({
     where: {
-      id: id
-    }
+      UserId: id
+    },
+    raw: true
+  }).then((err, data) => {
+    if (err) throw err;
+    console.dir(data);
+    // res.send(data);
+    res.end();
+  }).catch((err) => {
+    console.error(err);
   });
 });
-//     .then((err, data) => {
-//       if (err) throw err;
-//       res.json(data);
-//     })
+
 //     .catch((err) => {
 //       console.error(err);
 //     });
