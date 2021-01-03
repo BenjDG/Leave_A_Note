@@ -34,4 +34,8 @@ router.get('/notes', isAuthenticated, (_req, res) => {
   res.render('notes');
 });
 
+router.get('/profile', isAuthenticated, (_req, res) => {
+  res.render('profile');
+});
+
 module.exports = router;
