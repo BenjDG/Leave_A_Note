@@ -1,5 +1,10 @@
 
-
+input {
+  border: 0;
+}
+.cardfooter,.card-footer-item {
+  border: 0 !important;
+}
 
 form.signup,
 form.login {
@@ -10,7 +15,6 @@ form.login {
   font-size: 25px;
   font-weight:bold;
 }
-
 
 #profile{
   font-size: 40px;
