@@ -34,10 +34,15 @@ $(document).ready(() => {
     // card body
     const $cardBody = $('<p>').text('Some note about JQuery.');
 
-    // card buttons
-    // const $cardBtnDelete;
-    // const $cardBtnEdit;
-    // const $span = $('<span>').attr('class', 'icon is-medium');
+    const $cardContent = $('<div>').attr('class', 'card-content');
+    $cardContent.append($cardTitle);
+    $cardContent.append($cardBody);
+
+    // card footer
+    const $cardFooter = $('<div>').attr('class', 'card-footer');
+    const $cardFooterItem1 = $('<div>').attr('class', 'card-footer-item');
+    const $cardFooterItem2 = $('<div>').attr('class', 'card-footer-item');
+    const $cardFooterItem3 = $('<div>').attr('class', 'card-footer-item');
 
     // different buttons
     // delete button
@@ -46,30 +51,33 @@ $(document).ready(() => {
     const $spanDel = $('<span>').attr('class', 'icon is-medium');
     const $cardBtnDel = $('<button>').attr(
       'class',
-      'button is-primary is-rounded is-large m-5 p-5 is-align-self-flex-end'
+      'button is-primary is-rounded is-large m-1 p-5 is-align-self-flex-end'
     );
     $spanDel.append($iconDelete);
     $cardBtnDel.append($spanDel);
+    $cardFooterItem3.append($cardBtnDel);
 
     // update button
     const $iconUpdate = $('<i>').attr('class', 'far fa-edit');
     const $spanUpd = $('<span>').attr('class', 'icon is-medium');
     const $cardBtnUpd = $('<button>').attr(
       'class',
-      'button is-primary is-rounded is-large m-5 p-5 is-align-self-flex-end'
+      'button is-primary is-rounded is-large m-1 p-5 is-align-self-flex-end'
     );
     $spanUpd.append($iconUpdate);
     $cardBtnUpd.append($spanUpd);
+    $cardFooterItem2.append($cardBtnUpd);
 
-    // attach title and body
-    $card.append($cardTitle);
-    $card.append($cardBody);
+    // attach card content
+    $card.append($cardContent);
 
     // attach buttons
-    $card.append($cardBtnUpd);
-    $card.append($cardBtnDel);
+    $card.append($cardFooter);
+    $cardFooter.append($cardFooterItem1);
+    $cardFooter.append($cardFooterItem2);
+    $cardFooter.append($cardFooterItem3);
 
-    //attach card to section
+    // attach card to section
     $notesSection.append($card);
   }
 
