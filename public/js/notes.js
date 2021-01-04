@@ -1,5 +1,9 @@
 $(document).ready(() => {
   console.log('js running');
+  const $notesSection = $('#notes-section');
+  const $inputTitle = $('input#inputTitle');
+  const $inputBody = $('input#inputBody');
+
   // This file just does a GET request to figure out which user is logged in
   // and updates the HTML on the page
   const d1 = $.get('/api/user_data');
@@ -17,11 +21,24 @@ $(document).ready(() => {
     });
   });
 
-  // hydrate page
-  // card section
-  const $notesSection = $('#notes-section');
+  $('#saveButton').on('click', function (e) {
+    console.log(e);
+    console.log(e.currentTarget);
+    $.post('/api/note_data', {
+      title: $inputTitle.val().trim(),
+      body: $inputBody.val().trim()
+    })
+      .then(() => {
+        window.location.replace('/notes');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
 
-  // const $iconSave = $('<i>').attr('class', 'far fa-save');
+  $('.logout').on('click', function () {
+    window.location.replace('/logout');
+  });
 
   function renderCardFactory (_id, title, body) {
     // individual cards
@@ -57,16 +74,17 @@ $(document).ready(() => {
     $cardBtnDel.append($spanDel);
     $cardFooterItem3.append($cardBtnDel);
 
-    // update button
-    const $iconUpdate = $('<i>').attr('class', 'far fa-edit');
-    const $spanUpd = $('<span>').attr('class', 'icon is-medium');
-    const $cardBtnUpd = $('<button>').attr(
-      'class',
-      'button is-primary is-rounded is-large m-1 p-5 is-align-self-flex-end'
-    );
-    $spanUpd.append($iconUpdate);
-    $cardBtnUpd.append($spanUpd);
-    $cardFooterItem2.append($cardBtnUpd);
+    // put in the ice box
+    // // update button
+    // const $iconUpdate = $('<i>').attr('class', 'far fa-edit');
+    // const $spanUpd = $('<span>').attr('class', 'icon is-medium');
+    // const $cardBtnUpd = $('<button>').attr(
+    //   'class',
+    //   'button is-primary is-rounded is-large m-1 p-5 is-align-self-flex-end'
+    // );
+    // $spanUpd.append($iconUpdate);
+    // $cardBtnUpd.append($spanUpd);
+    // $cardFooterItem2.append($cardBtnUpd);
 
     // attach card content
     $card.append($cardContent);
@@ -80,9 +98,4 @@ $(document).ready(() => {
     // attach card to section
     $notesSection.append($card);
   }
-
-  // hydrate page with note data
-  $('.logout').on('click', function () {
-    window.location.replace('/logout');
-  });
 });
