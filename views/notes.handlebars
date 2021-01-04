@@ -1,31 +1,18 @@
-<section class="section has-background-light">
-  <nav class="navbar has-background-light" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      {{!-- brand image --}}
-    </div>
-    <div class="m-2">
-      <h2 class="navbar-item is-size-1">Welcome!&nbsp;<span class="member-name"></span></h2>
-    </div>
-    <button id="add-a-note" class="navbar-item is-left button is-primary is-rounded is-large m-5 p-5">
-      add a note
-    </button>
-    <div class="navbar-end">
-      <button class="button is-rounded logout">
-        {{!-- /logout --}}
-        Logout
-      </button>
-    </div>
-  </nav>
-</section>
+{{>nav}}
+<button id="add-a-note" class="navbar-item is-left button is-primary is-rounded is-large m-5 p-5">
+  add a note
+</button>
 <section class="section">
   <main>
     <div class="tile is-ancestor">
       <div id="notes-section" class="tile is-parent">
-        <div id="input-card" class="tile is-4 is-child box is-flex is-flex-direction-column is-justify-content-space-between hidden">
+        <div id="input-card"
+          class="tile is-4 is-child box is-flex is-flex-direction-column is-justify-content-space-between hidden">
           <div class="card-content">
             <form class="field">
               <div class="control">
-                <input id="inputTitle" class="title p-1 m-2" type="text" name="inputTitle" placeholder="Enter a title" />
+                <input id="inputTitle" class="title p-1 m-2" type="text" name="inputTitle"
+                  placeholder="Enter a title" />
               </div>
               <div class="control">
                 <input id="inputBody" class="p-1 m-2" type="text" name="inputBody" placeholder="Enter a note" />
