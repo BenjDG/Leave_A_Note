@@ -28,7 +28,7 @@ module.exports = function (sequelize, DataTypes) {
       unique: false
     }
   });
-  // Associate User with Nots
+  // Associate User with Notes
   // When a User is deleted, also delete any associated Notes
   User.associate = models => {
     User.hasMany(models.Note, {
