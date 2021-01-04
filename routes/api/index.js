@@ -51,16 +51,21 @@ router.route('/note_data').get((req, res) => {
   db.Note.findAll({
     where: {
       UserId: id
-    },
-    raw: true
-  }).then((err, data) => {
-    if (err) throw err;
+    }
+  }).then(function (data) {
     console.dir(data);
-    // res.send(data);
-    res.end();
-  }).catch((err) => {
+    res.json(data);
+  }).catch(function (err) {
     console.error(err);
   });
+
+  // .then((err, data) => {
+  //   if (err) throw err;
+  //   console.dir(data);
+  //   res.send(data);
+  // }).catch((err) => {
+  //   console.error(err);
+  // });
 });
 
 //     .catch((err) => {
