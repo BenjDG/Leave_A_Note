@@ -21,6 +21,10 @@ $(document).ready(() => {
     });
   });
 
+  $('#add-a-note').on('click', function (e) {
+    $('div#input-card').toggleClass('hidden');
+  });
+
   $('#saveButton').on('click', function (e) {
     console.log(e);
     console.log(e.currentTarget);
