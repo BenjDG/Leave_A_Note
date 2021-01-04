@@ -8,12 +8,12 @@ $(document).ready(() => {
   $.when(d1, d2).then((v1, v2) => {
     $('.member-name').text(v1[0].email);
     // console.dir(v1[0]);
-    // console.dir(v2[0]);
+    console.dir(v2[0]);
     v2[0].forEach((element) => {
       console.log(element.id);
       console.log(element.title);
       console.log(element.body);
-      renderCardFactory();
+      renderCardFactory(element.id, element.title, element.body);
     });
   });
 
@@ -23,16 +23,16 @@ $(document).ready(() => {
 
   // const $iconSave = $('<i>').attr('class', 'far fa-save');
 
-  function renderCardFactory () {
+  function renderCardFactory (_id, title, body) {
     // individual cards
     const $card = $('<div>').attr(
       'class',
       'tile is-4 is-child box is-flex is-flex-direction-column is-justify-content-space-between'
     );
     // card title
-    const $cardTitle = $('<p>').attr('class', 'title').text('JQuery');
+    const $cardTitle = $('<p>').attr('class', 'title').text(title);
     // card body
-    const $cardBody = $('<p>').text('Some note about JQuery.');
+    const $cardBody = $('<p>').text(body);
 
     const $cardContent = $('<div>').attr('class', 'card-content');
     $cardContent.append($cardTitle);
