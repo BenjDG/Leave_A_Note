@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
   // Check for click events on the navbar burger icon
   $('.navbar-burger').click(function () {
@@ -10,6 +9,7 @@ $(document).ready(function () {
   $('#note-nav').on('click', function () {
     window.location.replace('/notes');
   });
+
   $('#profile-nav').on('click', function () {
     window.location.replace('/profile');
   });
