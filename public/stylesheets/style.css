@@ -1,5 +1,10 @@
 
-
+input {
+  border: 0;
+}
+.cardfooter,.card-footer-item {
+  border: 0 !important;
+}
 
 form.signup,
 form.login {
@@ -11,6 +16,9 @@ form.login {
   font-weight:bold;
 }
 
+.hidden {
+  display: none !important;
+}
 
 #profile{
   font-size: 40px;
@@ -22,4 +30,8 @@ form.login {
 #span_firstname,#span_lastname,#useremail{
    font-size: 20px;
    font-weight: 400;
+}
+
+#notes-section{
+  flex-wrap: wrap;
 }

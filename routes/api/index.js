@@ -46,7 +46,6 @@ router.get('/user_data', (req, res) => {
 router.route('/note_data')
   .get((req, res) => {
     loginCheck(req, res);
-    console.log(req.user);
     const id = req.user.id;
     // Otherwise, send back the user's note
     db.Note.findAll({
@@ -54,7 +53,6 @@ router.route('/note_data')
         UserId: id
       }
     }).then(function (data) {
-      console.dir(data);
       res.json(data);
     }).catch(function (err) {
       console.error(err);
@@ -63,15 +61,12 @@ router.route('/note_data')
   })
   .post((req, res) => {
     loginCheck(req, res);
-    // console.log(req.user.id);
-    // console.log(req.body);
     // Create a note
     db.Note.create({
       title: req.body.title,
       body: req.body.body,
       UserId: req.user.id
     }).then((d) => {
-      console.dir(d);
       res.json(d);
     }).catch(function (err) {
       console.error(err);

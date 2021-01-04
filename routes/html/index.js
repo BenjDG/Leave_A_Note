@@ -9,9 +9,7 @@ router.get('/', (req, res) => {
   if (req.user) {
     res.redirect('/notes');
   }
-
-  // res.sendFile(path.join(__dirname, '../../public/signup.html'));
-  res.render('signup');
+  res.render('login');
 });
 
 router.get('/login', (req, res) => {
@@ -20,6 +18,14 @@ router.get('/login', (req, res) => {
     res.redirect('/notes');
   }
   res.render('login');
+});
+
+router.get('/signup', (req, res) => {
+  // If the user already has an account send them to the members page
+  if (req.user) {
+    res.redirect('/notes');
+  }
+  res.render('signup');
 });
 
 // Route for logging user out
