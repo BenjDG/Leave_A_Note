@@ -12,35 +12,42 @@
 
     <div class="columns is-mobile is-centered">
       <div class="column is-half">
-        <div class="field">
-          <input class="input is-primary" id="firstname" type="firstname" placeholder="First Name" />
-        </div>
-        <div class="field">
-          <input class="input is-primary" id="lastname" type="lastname" placeholder="Last Name" />
-        </div>
-
-        <div class="field">
-          <p class="control has-icons-left has-icons-right">
-            <input class="input is-primary" id="email" type="email" placeholder="Email" />
-            <span class="icon is-small is-left">
-              <i class="fas fa-envelope"></i>
-            </span>
-          </p>
-        </div>
-        <div>
-          <p class="control has-icons-left">
-            <input class="input is-primary" id="password" type="password" placeholder="Password" />
-            <span class="icon is-small is-left">
-              <i class="fas fa-lock"></i>
-            </span>
-          </p>
-        </div>
-        <div class="buttons is-centered" style="margin-top: 5%;">
-          <button class="button is-primary" id="signup">Sign Up</button>
-        </div>
-        <div>
+        <form class="signup">
+          <div class="field">
+            <div class="control">
+              <input class="input is-primary" id="firstname" type="firstname" placeholder="First Name"
+                autocomplete="on" />
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input class="input is-primary" id="lastname" type="lastname" placeholder="Last Name" autocomplete="on" />
+            </div>
+          </div>
+          <div class="field">
+            <div class="control has-icons-left has-icons-right">
+              <input class="input is-primary" id="email" type="email" placeholder="Email" autocomplete="on" />
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control has-icons-left">
+              <input class="input is-primary" id="password" type="password" placeholder="Password" autocomplete="off" />
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </div>
+            <p id="error" class="help has-text-left is-danger"></p>
+          </div>
+          <div class="buttons is-centered" style="margin-top: 5%;">
+            <button class="button is-primary" type="submit">Sign Up</button>
+          </div>
+        </form>
+        <div class="m-4">
           <a href="/login">Go to login page.</a>
-        </div> 
+        </div>
       </div>
     </div>
   </div>
