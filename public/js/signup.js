@@ -9,7 +9,6 @@ $(document).ready(() => {
   // When the signup button is clicked, we validate the email and password, firstname , lastname are not blank
   signupForm.on('submit', event => {
     event.preventDefault();
-    console.log('click');
     const userData = {
       firstName: firstName.val().trim(),
       lastName: lastName.val().trim(),
@@ -17,13 +16,23 @@ $(document).ready(() => {
       password: password.val().trim()
     };
 
-    if (!userData.email || !userData.password) {
-      errorMessage('Email or Password is missing.');
+    if (!userData.password) {
+      errorMessage('Password is missing.');
       return;
     }
 
-    if (!userData.firstName || !userData.lastName) {
-      errorMessage('First or Last name is missing.');
+    if (!userData.email) {
+      errorMessage('Email is missing.');
+      return;
+    }
+
+    if (!userData.firstName) {
+      errorMessage('First name is missing.');
+      return;
+    }
+
+    if (!userData.lastName) {
+      errorMessage('Last name is missing.');
       return;
     }
 
