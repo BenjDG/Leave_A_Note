@@ -1,6 +1,6 @@
 # LeaveANote
 
-![MIT License](https://img.shields.io/badge/license-MIT-green)
+![GNU License](https://img.shields.io/badge/license-GNU-green)
 
 This app allows users to log in and leave a note for their groups. It also allows them to view notes left for them by other users in their group.
 
@@ -40,7 +40,7 @@ Note data based on users should persist note data based on users.
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+[GNU GPL3](https://choosealicense.com/licenses/gpl-3.0/)
 
 ## Contributions
 
