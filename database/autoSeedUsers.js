@@ -13,63 +13,63 @@ const testUsers = [
     first_name: 'Homer',
     last_name: 'Simpson',
     email: 'homer@simpsons.com',
-    password: 'doh',
+    password: process.env.HOMER,
     GroupId: 2
   },
   {
     first_name: 'Marge',
     last_name: 'Simpson',
     email: 'marge@simpsons.com',
-    password: 'ohno',
+    password: process.env.MARGE,
     GroupId: 2
   },
   {
     first_name: 'Lisa',
     last_name: 'Simpson',
     email: 'lisa@simpsons.com',
-    password: 'barisax',
+    password: process.env.LISA,
     GroupId: 2
   },
   {
     first_name: 'Bart',
     last_name: 'Simpson',
     email: 'bart@simpsons.com',
-    password: 'eatmyshorts',
+    password: process.env.BART,
     GroupId: 2
   },
   {
     first_name: 'Maggie',
     last_name: 'Simpson',
     email: 'maggie@simpsons.com',
-    password: 'maggiedidit',
+    password: process.env.MAGGIE,
     GroupId: 2
   },
   {
     first_name: 'June',
     last_name: 'Cleaver',
     email: 'june@cleavers.com',
-    password: 'june',
+    password: process.env.JUNE,
     GroupId: 3
   },
   {
     first_name: 'Ward',
     last_name: 'Cleaver',
     email: 'ward@cleavers.com',
-    password: 'ward',
+    password: process.env.WARD,
     GroupId: 3
   },
   {
     first_name: 'Wally',
     last_name: 'Cleaver',
     email: 'wally@cleavers.com',
-    password: 'wally',
+    password: process.env.WALLY,
     GroupId: 3
   },
   {
     first_name: 'Beaver',
     last_name: 'Cleaver',
     email: 'beaver@cleavers.com',
-    password: 'Beaver',
+    password: process.env.BEAVER,
     GroupId: 3
   }
 ];
