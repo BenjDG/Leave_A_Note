@@ -1,15 +1,14 @@
 $(document).ready(() => {
   // Getting references to our form and input
-  const signupButton = $('#signup');
+  const signupForm = $('form.signup');
   const firstName = $('#firstname');
   const lastName = $('#lastname');
   const email = $('#email');
   const password = $('#password');
 
   // When the signup button is clicked, we validate the email and password, firstname , lastname are not blank
-  signupButton.on('click', event => {
+  signupForm.on('submit', event => {
     event.preventDefault();
-    console.log('click');
     const userData = {
       firstName: firstName.val().trim(),
       lastName: lastName.val().trim(),
@@ -17,9 +16,26 @@ $(document).ready(() => {
       password: password.val().trim()
     };
 
-    if (!userData.email || !userData.password) {
+    if (!userData.password) {
+      errorMessage('Password is missing.');
       return;
     }
+
+    if (!userData.email) {
+      errorMessage('Email is missing.');
+      return;
+    }
+
+    if (!userData.firstName) {
+      errorMessage('First name is missing.');
+      return;
+    }
+
+    if (!userData.lastName) {
+      errorMessage('Last name is missing.');
+      return;
+    }
+
     // If we have an email and password , firstname and lastname, run the signUpUser function
     signUpUser(
       userData.email,
@@ -52,5 +68,12 @@ $(document).ready(() => {
   function handleLoginErr (err) {
     $('#alert .msg').text(err.responseJSON);
     $('#alert').fadeIn(500);
+  }
+
+  function errorMessage (e) {
+    $('input')
+      .toggleClass('is-danger')
+      .toggleClass('is-primary');
+    $('#error').text(e);
   }
 });

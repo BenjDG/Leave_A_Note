@@ -10,20 +10,21 @@
       <div class="column is-half">
         <form class="login">
           <div class="field">
-            <p class="control has-icons-left has-icons-right">
+            <div class="control has-icons-left has-icons-right">
               <input class="input is-primary" id="email-input" type="email" placeholder="Email" autocomplete="on" autofocus />
               <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
               </span>
-            </p>
+            </div>
           </div>
           <div class="field">
-            <p class="control has-icons-left has-icons-right">
+            <div class="control has-icons-left has-icons-right">
               <input class="input is-primary" id="password-input" type="password" placeholder="Password" autocomplete="off"/>
               <span class="icon is-small is-left">
                 <i class="fas fa-lock"></i>
               </span>
-            </p>
+              <p id="error" class="help has-text-left is-danger"></p>
+            </div>
           </div>
           <div class="buttons is-centered" style="margin-top: 5%;">
             <button class="button is-primary" type="submit">Login</button>
