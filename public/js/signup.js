@@ -1,10 +1,12 @@
 $(document).ready(() => {
   // Getting references to our form and input
+
   const signupForm = $('form.signup');
   const firstName = $('#firstname');
   const lastName = $('#lastname');
   const email = $('#email');
   const password = $('#password');
+  const passwordConfirm = $('#password-confirm');
 
   // When the signup button is clicked, we validate the email and password, firstname , lastname are not blank
   signupForm.on('submit', event => {
@@ -36,6 +38,21 @@ $(document).ready(() => {
       return;
     }
 
+    if (!nameValidator(userData.firstName)) {
+      errorMessage('First name only use letters with no spaces.');
+      return;
+    }
+
+    if (!nameValidator(userData.lastName)) {
+      errorMessage('Last name only use letters with no spaces.');
+      return;
+    }
+
+    if (password.val() !== passwordConfirm.val()) {
+      errorMessage('Passwords do not match.');
+      return;
+    }
+
     // If we have an email and password , firstname and lastname, run the signUpUser function
     signUpUser(
       userData.email,
@@ -63,6 +80,12 @@ $(document).ready(() => {
         // If there's an error, handle it by throwing up a alert
       })
       .catch(handleLoginErr);
+  }
+
+  function nameValidator (n) {
+    const nameRGEX = /^[a-zA-Z]+$/g;
+    const result = nameRGEX.test(n);
+    return result;
   }
 
   function handleLoginErr (err) {
