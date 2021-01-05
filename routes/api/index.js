@@ -28,7 +28,7 @@ router.post('/signup', (req, res) => {
     .then(() => {
       res.redirect(307, '/api/login');
     })
-    .catch((err) => {
+    .catch(err => {
       res.status(401).json(err);
     });
 });
@@ -43,7 +43,8 @@ router.get('/user_data', (req, res) => {
 });
 
 // Route for getting data about notes to be used client side
-router.route('/note_data')
+router
+  .route('/note_data')
   .get((req, res) => {
     loginCheck(req, res);
     const id = req.user.id;
@@ -52,12 +53,14 @@ router.route('/note_data')
       where: {
         UserId: id
       }
-    }).then(function (data) {
-      res.json(data);
-    }).catch(function (err) {
-      console.error(err);
-      res.send(err);
-    });
+    })
+      .then(function (data) {
+        res.json(data);
+      })
+      .catch(function (err) {
+        console.error(err);
+        res.send(err);
+      });
   })
   .post((req, res) => {
     loginCheck(req, res);
@@ -66,11 +69,34 @@ router.route('/note_data')
       title: req.body.title,
       body: req.body.body,
       UserId: req.user.id
-    }).then((d) => {
-      res.json(d);
-    }).catch(function (err) {
+    })
+      .then(d => {
+        res.json(d);
+      })
+      .catch(function (err) {
+        console.error(err);
+        res.send(err);
+      });
+  });
+// Handler for api/view_group_choices
+router.get('/view_group_choices', (req, res) => {
+  loginCheck(req, res);
+  // Return an object with the name and ID number of all groups
+  db.Group.findAll({
+    // Select attributes from db and rename them
+    attributes: [
+      ['id', 'GroupId'],
+      ['name', 'GroupName']
+    ]
+  })
+    .then(function (data) {
+      // Send response as JSON
+      res.json(data);
+    })
+    .catch(function (err) {
+      // If there is an error, log it on the console and send it to the client
       console.error(err);
       res.send(err);
     });
-  });
+});
 module.exports = router;

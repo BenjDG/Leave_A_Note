@@ -13,7 +13,7 @@ $(document).ready(() => {
     $('.member-name').text(v1[0].email);
     // console.dir(v1[0]);
     console.dir(v2[0]);
-    v2[0].forEach((element) => {
+    v2[0].forEach(element => {
       console.log(element.id);
       console.log(element.title);
       console.log(element.body);
@@ -51,7 +51,9 @@ $(document).ready(() => {
       'tile is-4 is-child box is-flex is-flex-direction-column is-justify-content-space-between'
     );
     // card title
-    const $cardTitle = $('<p>').attr('class', 'title').text(title);
+    const $cardTitle = $('<p>')
+      .attr('class', 'title')
+      .text(title);
     // card body
     const $cardBody = $('<p>').text(body);
 
