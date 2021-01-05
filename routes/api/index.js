@@ -6,7 +6,7 @@ const passport = require('../../config/passport');
 function loginCheck (req, res) {
   // If user is not logged in, send back an empty object
   if (!req.user) {
-    return res.json({});
+    return res.sendStatus(401);
   }
 }
 // Using the passport.authenticate middleware with our local strategy.
@@ -115,6 +115,26 @@ router.get('/view_my_group_notes', (req, res) => {
     }
   })
     .then(data => {
+      res.json(data);
+    })
+    .catch(function (err) {
+      // If there is an error, log it on the console and send it to the client
+      console.error(err);
+      res.send(err);
+    });
+});
+
+// Handler for api/get_my_group_name
+router.get('/get_my_group_name', (req, res) => {
+  loginCheck(req, res);
+  // Return an object with the name and ID number of all groups
+  db.Group.findOne({
+    // condition and eager load response
+    where: { id: req.user.GroupId },
+    attributes: [['name', 'GroupName']]
+  })
+    .then(function (data) {
+      // Send response as JSON
       res.json(data);
     })
     .catch(function (err) {
