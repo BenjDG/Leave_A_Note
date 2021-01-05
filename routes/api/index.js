@@ -99,4 +99,24 @@ router.get('/view_group_choices', (req, res) => {
       res.send(err);
     });
 });
+
+// Handler for api/get_my_group_name
+router.get('/get_my_group_name', (req, res) => {
+  loginCheck(req, res);
+  // Return an object with the name and ID number of all groups
+  db.Group.findOne({
+    // condition and eager load response
+    where: { id: req.user.GroupId },
+    attributes: [['name', 'GroupName']]
+  })
+    .then(function (data) {
+      // Send response as JSON
+      res.json(data);
+    })
+    .catch(function (err) {
+      // If there is an error, log it on the console and send it to the client
+      console.error(err);
+      res.send(err);
+    });
+});
 module.exports = router;
