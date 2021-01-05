@@ -80,12 +80,21 @@ router
   });
 // Handler for api/view_group_choices
 router.get("/view_group_choices", (req, res) => {
-  // Get all groups
-  db.Group.findAll()
+  loginCheck(req, res);
+  // Return an object with the name and ID number of all groups
+  db.Group.findAll({
+    // Select attributes from db and rename them
+    attributes: [
+      ["id", "GroupId"],
+      ["name", "GroupName"],
+    ],
+  })
     .then(function(data) {
+      // Send response as JSON
       res.json(data);
     })
     .catch(function(err) {
+      // If there is an error, log it on the console and send it to the client
       console.error(err);
       res.send(err);
     });
