@@ -9,7 +9,7 @@ $(document).ready(() => {
   const passwordConfirm = $('#password-confirm');
 
   // When the signup button is clicked, we validate the email and password, firstname , lastname are not blank
-  signupForm.on('submit', event => {
+  signupForm.on('submit', (event) => {
     event.preventDefault();
     const userData = {
       firstName: firstName.val().trim(),
@@ -60,10 +60,6 @@ $(document).ready(() => {
       userData.firstName,
       userData.lastName
     );
-    email.val('');
-    password.val('');
-    firstName.val('');
-    lastName.val('');
   });
 
   // Does a post to the signup route. If successful, we are redirected to the members page
@@ -75,22 +71,23 @@ $(document).ready(() => {
       first_name: firstName,
       last_name: lastName
     })
-      .then(() => {
-        window.location.replace('/notes');
+      .done((r) => {
+        if (r.id) {
+          window.location.replace('/notes');
+        } else {
+          errorMessage('Email already in use.  Contact Support.');
+        }
         // If there's an error, handle it by throwing up a alert
       })
-      .catch(handleLoginErr);
+      .fail((e) => {
+        console.error(e);
+      });
   }
 
   function nameValidator (n) {
     const nameRGEX = /^[a-zA-Z]+$/g;
     const result = nameRGEX.test(n);
     return result;
-  }
-
-  function handleLoginErr (err) {
-    $('#alert .msg').text(err.responseJSON);
-    $('#alert').fadeIn(500);
   }
 
   function errorMessage (e) {
