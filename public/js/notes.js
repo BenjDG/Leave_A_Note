@@ -1,5 +1,4 @@
 $(document).ready(() => {
-  console.log('js running');
   const $notesSection = $('#notes-section');
   const $inputTitle = $('input#inputTitle');
   const $inputBody = $('input#inputBody');
@@ -11,12 +10,7 @@ $(document).ready(() => {
 
   $.when(d1, d2).then((v1, v2) => {
     $('.member-name').text(v1[0].email);
-    // console.dir(v1[0]);
-    console.dir(v2[0]);
     v2[0].forEach(element => {
-      console.log(element.id);
-      console.log(element.title);
-      console.log(element.body);
       renderCardFactory(element.id, element.title, element.body);
     });
   });
