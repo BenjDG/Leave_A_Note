@@ -99,4 +99,29 @@ router.get('/view_group_choices', (req, res) => {
       res.send(err);
     });
 });
+
+// Handler for api/view_my_group_notes
+// get all notes where user = user id
+router.get('/view_my_group_notes', (req, res) => {
+  // Get user groupId from the request
+  const userGroupId = req.user.GroupId;
+  // Get all users and their notes
+  db.User.findAll({
+    where: { GroupId: userGroupId },
+    attributes: ['first_name', 'last_name', 'email'],
+    include: {
+      model: db.Note,
+      attributes: ['title', 'body', ['id', 'NoteId']]
+    }
+  })
+    .then(data => {
+      res.json(data);
+    })
+    .catch(function (err) {
+      // If there is an error, log it on the console and send it to the client
+      console.error(err);
+      res.send(err);
+    });
+});
+
 module.exports = router;
