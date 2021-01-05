@@ -6,7 +6,7 @@ const passport = require('../../config/passport');
 function loginCheck (req, res) {
   // If user is not logged in, send back an empty object
   if (!req.user) {
-    return res.json({});
+    return res.sendStatus(401);
   }
 }
 // Using the passport.authenticate middleware with our local strategy.
