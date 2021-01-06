@@ -1,9 +1,9 @@
-const router = require('express').Router();
+const router = require("express").Router();
 // Requiring our models and passport as we've configured it
-const db = require('../../models');
-const passport = require('../../config/passport');
+const db = require("../../models");
+const passport = require("../../config/passport");
 
-function loginCheck (req, res) {
+function loginCheck(req, res) {
   // If user is not logged in, send back an empty object
   if (!req.user) {
     return res.sendStatus(401);
@@ -12,30 +12,30 @@ function loginCheck (req, res) {
 // Using the passport.authenticate middleware with our local strategy.
 // If the user has valid login credentials, send them to the members page.
 // Otherwise the user will be sent an error
-router.post('/login', passport.authenticate('local'), (req, res) => {
+router.post("/login", passport.authenticate("local"), (req, res) => {
   // Sending back a password, even a hashed password, isn't a good idea
   res.json({
     email: req.user.email,
-    id: req.user.id
+    id: req.user.id,
   });
 });
 
 // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
 // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
 // otherwise send back an error
-router.post('/signup', (req, res) => {
+router.post("/signup", (req, res) => {
   db.User.create(req.body)
     .then(() => {
-      res.redirect(307, '/api/login');
+      res.redirect(307, "/api/login");
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.json(err).status(401);
     });
 });
 
 // Route for getting some data about our user to be used client side
-router.get('/user_data', (req, res) => {
+router.get("/user_data", (req, res) => {
   loginCheck(req, res);
   // Otherwise send back the user's email and id
   // Sending back a password, even a hashed password, isn't a good idea
@@ -45,20 +45,20 @@ router.get('/user_data', (req, res) => {
 
 // Route for getting data about notes to be used client side
 router
-  .route('/note_data')
+  .route("/note_data")
   .get((req, res) => {
     loginCheck(req, res);
     const id = req.user.id;
     // Otherwise, send back the user's note
     db.Note.findAll({
       where: {
-        UserId: id
-      }
+        UserId: id,
+      },
     })
-      .then(function (data) {
+      .then(function(data) {
         res.json(data);
       })
-      .catch(function (err) {
+      .catch(function(err) {
         console.error(err);
         res.send(err);
       });
@@ -69,32 +69,32 @@ router
     db.Note.create({
       title: req.body.title,
       body: req.body.body,
-      UserId: req.user.id
+      UserId: req.user.id,
     })
-      .then(d => {
+      .then((d) => {
         res.json(d);
       })
-      .catch(function (err) {
+      .catch(function(err) {
         console.error(err);
         res.send(err);
       });
   });
 // Handler for api/view_group_choices
-router.get('/view_group_choices', (req, res) => {
+router.get("/view_group_choices", (req, res) => {
   loginCheck(req, res);
   // Return an object with the name and ID number of all groups
   db.Group.findAll({
     // Select attributes from db and rename them
     attributes: [
-      ['id', 'GroupId'],
-      ['name', 'GroupName']
-    ]
+      ["id", "GroupId"],
+      ["name", "GroupName"],
+    ],
   })
-    .then(function (data) {
+    .then(function(data) {
       // Send response as JSON
       res.json(data);
     })
-    .catch(function (err) {
+    .catch(function(err) {
       // If there is an error, log it on the console and send it to the client
       console.error(err);
       res.send(err);
@@ -103,22 +103,22 @@ router.get('/view_group_choices', (req, res) => {
 
 // Handler for api/view_my_group_notes
 // get all notes where user = user id
-router.get('/view_my_group_notes', (req, res) => {
+router.get("/view_my_group_notes", (req, res) => {
   // Get user groupId from the request
   const userGroupId = req.user.GroupId;
   // Get all users and their notes
   db.User.findAll({
     where: { GroupId: userGroupId },
-    attributes: ['first_name', 'last_name', 'email'],
+    attributes: ["first_name", "last_name", "email"],
     include: {
       model: db.Note,
-      attributes: ['title', 'body', ['id', 'NoteId']]
-    }
+      attributes: ["title", "body", ["id", "NoteId"]],
+    },
   })
-    .then(data => {
+    .then((data) => {
       res.json(data);
     })
-    .catch(function (err) {
+    .catch(function(err) {
       // If there is an error, log it on the console and send it to the client
       console.error(err);
       res.send(err);
@@ -126,20 +126,41 @@ router.get('/view_my_group_notes', (req, res) => {
 });
 
 // Handler for api/get_my_group_name
-router.get('/get_my_group_name', (req, res) => {
+router.get("/get_my_group_name", (req, res) => {
   loginCheck(req, res);
   // Return an object with the name and ID number of all groups
   db.Group.findOne({
     // condition and eager load response
     where: { id: req.user.GroupId },
-    attributes: [['name', 'GroupName']]
+    attributes: [["name", "GroupName"]],
   })
-    .then(function (data) {
+    .then(function(data) {
       // Send response as JSON
       res.json(data);
     })
-    .catch(function (err) {
+    .catch(function(err) {
       // If there is an error, log it on the console and send it to the client
+      console.error(err);
+      res.send(err);
+    });
+});
+
+// Handler for api/delete_note
+router.delete("/delete_note", (req, res) => {
+  loginCheck(req, res);
+  // Return an object with the name and ID number of all groups
+  db.Note.destroy({
+    // condition and eager load response
+    where: { id: req.body.id },
+  })
+    .then(function(data) {
+      // Send response as JSON
+      console.log("data :>> ", data);
+      res.json(data);
+    })
+    .catch(function(err) {
+      // If there is an error, log it on the console and send it to the client
+      console.log("req :>> ", req.body);
       console.error(err);
       res.send(err);
     });
