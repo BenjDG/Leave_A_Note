@@ -2,6 +2,10 @@
 
 ![GNU License](https://img.shields.io/badge/license-GNU-green)
 
+## Live website
+
+https://project-leave-a-note.herokuapp.com/
+
 This app allows users to log in and leave a note for their groups. It also allows them to view notes left for them by other users in their group.
 
 Following the [common templates for user stories](https://en.wikipedia.org/wiki/User_story#Common_templates), we frame our project goals as follows:

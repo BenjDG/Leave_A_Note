@@ -28,7 +28,7 @@ router.post('/signup', (req, res) => {
     .then(() => {
       res.redirect(307, '/api/login');
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.json(err).status(401);
     });
@@ -71,7 +71,7 @@ router
       body: req.body.body,
       UserId: req.user.id
     })
-      .then(d => {
+      .then((d) => {
         res.json(d);
       })
       .catch(function (err) {
@@ -115,7 +115,7 @@ router.get('/view_my_group_notes', (req, res) => {
       attributes: ['title', 'body', ['id', 'NoteId']]
     }
   })
-    .then(data => {
+    .then((data) => {
       res.json(data);
     })
     .catch(function (err) {
