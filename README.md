@@ -11,7 +11,6 @@ This app allows users to log in and leave a note for their groups. It also allow
 Following the [common templates for user stories](https://en.wikipedia.org/wiki/User_story#Common_templates), we frame our project goals as follows:
 
 ```
-
 As a member of a group
 I want to post and read notes from the group on a message board
 So that I enhance communication with my group
@@ -27,8 +26,6 @@ Application has an intuitive mobile first user interface.
 Application should work on mobile, tablet and desktop screen sizes.
 Application should have consistent styling across the application.
 Note data based on users should persist note data based on users.
-
-
 ```
 
 ## Table of contents
