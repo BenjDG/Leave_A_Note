@@ -15,30 +15,7 @@ $(document).ready(() => {
     });
   });
 
-  $('#add-a-note').on('click', function (e) {
-    $('div#input-card').toggleClass('hidden');
-  });
-
-  $('#saveButton').on('click', function (e) {
-    console.log(e);
-    console.log(e.currentTarget);
-    $.post('/api/note_data', {
-      title: $inputTitle.val().trim(),
-      body: $inputBody.val().trim()
-    })
-      .then(() => {
-        window.location.replace('/notes');
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  });
-
-  $('.logout').on('click', function () {
-    window.location.replace('/logout');
-  });
-
-  function renderCardFactory (_id, title, body) {
+  function renderCardFactory (id, title, body) {
     // individual cards
     const $card = $('<div>').attr(
       'class',
@@ -66,25 +43,13 @@ $(document).ready(() => {
 
     const $iconDelete = $('<i>').attr('class', 'far fa-trash-alt');
     const $spanDel = $('<span>').attr('class', 'icon is-medium');
-    const $cardBtnDel = $('<button>').attr(
-      'class',
-      'button is-primary is-rounded is-large m-1 p-5 is-align-self-flex-end'
-    );
+    const $cardBtnDel = $('<button>').attr({
+      class: 'button is-primary is-rounded is-large m-1 p-5 is-align-self-flex-end deleteButton',
+      id: id
+    });
     $spanDel.append($iconDelete);
     $cardBtnDel.append($spanDel);
     $cardFooterItem3.append($cardBtnDel);
-
-    // put in the ice box
-    // // update button
-    // const $iconUpdate = $('<i>').attr('class', 'far fa-edit');
-    // const $spanUpd = $('<span>').attr('class', 'icon is-medium');
-    // const $cardBtnUpd = $('<button>').attr(
-    //   'class',
-    //   'button is-primary is-rounded is-large m-1 p-5 is-align-self-flex-end'
-    // );
-    // $spanUpd.append($iconUpdate);
-    // $cardBtnUpd.append($spanUpd);
-    // $cardFooterItem2.append($cardBtnUpd);
 
     // attach card content
     $card.append($cardContent);
@@ -97,5 +62,42 @@ $(document).ready(() => {
 
     // attach card to section
     $notesSection.append($card);
+
+    $('.deleteButton').on('click', function (e) {
+      console.log('click');
+      $.ajax({
+        url: '/api/delete_note',
+        type: 'DELETE',
+        data: { id: e.currentTarget.id }
+
+      }).then(() => {
+        window.location.replace('/notes');
+      })
+        .catch(err => {
+          console.log(err);
+        });
+    });
   }
+  $('#add-a-note').on('click', function (e) {
+    $('div#input-card').toggleClass('hidden');
+  });
+
+  $('#saveButton').on('click', function (e) {
+    console.log(e);
+    console.log(e.currentTarget);
+    $.post('/api/note_data', {
+      title: $inputTitle.val().trim(),
+      body: $inputBody.val().trim()
+    })
+      .then(() => {
+        window.location.replace('/notes');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
+
+  $('.logout').on('click', function () {
+    window.location.replace('/logout');
+  });
 });
