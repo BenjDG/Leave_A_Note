@@ -13,7 +13,7 @@ $(document).ready(() => {
   ];
 
   // When the form is submitted, we validate there's an email and password entered
-  loginForm.on('submit', (event) => {
+  loginForm.on('submit', event => {
     event.preventDefault();
     const userData = {
       email: emailInput.val().trim(),
@@ -47,7 +47,7 @@ $(document).ready(() => {
         window.location.replace('/notes');
         // If there's an error, log the error
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
         if (err.status === 401) {
           errorMessage('Invalid username or password.');
