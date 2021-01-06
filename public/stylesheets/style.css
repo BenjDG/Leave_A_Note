@@ -1,4 +1,37 @@
+
+input {
+  border: 0;
+}
+.cardfooter,.card-footer-item {
+  border: 0 !important;
+}
+
 form.signup,
 form.login {
   margin-top: 50px;
+}
+
+.navbar-item{
+  font-size: 25px;
+  font-weight:bold;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#profile{
+  font-size: 40px;
+}
+#labelfirst,#labellast,#labelemail{
+  font-size: 25px;
+}
+
+#span_firstname,#span_lastname,#useremail{
+   font-size: 20px;
+   font-weight: 400;
+}
+
+#notes-section{
+  flex-wrap: wrap;
 }
