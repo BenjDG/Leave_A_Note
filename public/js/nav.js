@@ -14,6 +14,10 @@ $(document).ready(function () {
     window.location.replace('/profile');
   });
 
+  $('#group-nav').on('click', function () {
+    window.location.replace('/group-notes');
+  });
+
   $('#logout').on('click', function () {
     window.location.replace('/logout');
   });
