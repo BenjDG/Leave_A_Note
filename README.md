@@ -37,7 +37,20 @@ Note data based on users should persist note data based on users.
 
 ## Usage
 
-[video demonstration](demo_link...)
+![Desktop Login Page](./assets/desktop_login.png)  
+Desktop login page
+
+![Desktop Home Page](./assets/desktop_home.png)  
+Desktop home page
+
+![Desktop Group Page](./assets/desktop_group.png)  
+Desktop group page
+
+![Mobile Group Page](./assets/mobile_group.png)  
+Mobile group page
+
+![Mobile Profile Page](./assets/mobile_profile.png)  
+Mobile profile page
 
 ## License
 
