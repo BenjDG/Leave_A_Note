@@ -19,7 +19,7 @@ $(document).ready(() => {
     // individual cards
     const $card = $('<div>').attr(
       'class',
-      'tile is-4 is-child box is-flex is-flex-direction-column is-justify-content-space-between'
+      'tile is-4 is-child box is-flex is-flex-direction-column is-justify-content-space-between m-2'
     );
     // card title
     const $cardTitle = $('<p>')
