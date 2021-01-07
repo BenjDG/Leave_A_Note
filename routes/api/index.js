@@ -145,4 +145,25 @@ router.get('/get_my_group_name', (req, res) => {
     });
 });
 
+// Handler for api/delete_note
+router.delete('/delete_note', (req, res) => {
+  loginCheck(req, res);
+  // Return an object with the name and ID number of all groups
+  db.Note.destroy({
+    // condition and eager load response
+    where: { id: req.body.id }
+  })
+    .then(function (data) {
+      // Send response as JSON
+      console.log('data :>> ', data);
+      res.json(data);
+    })
+    .catch(function (err) {
+      // If there is an error, log it on the console and send it to the client
+      console.log('req :>> ', req.body);
+      console.error(err);
+      res.send(err);
+    });
+});
+
 module.exports = router;

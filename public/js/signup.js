@@ -9,7 +9,7 @@ $(document).ready(() => {
   const passwordConfirm = $('#password-confirm');
 
   // When the signup button is clicked, we validate the email and password, firstname , lastname are not blank
-  signupForm.on('submit', (event) => {
+  signupForm.on('submit', event => {
     event.preventDefault();
     const userData = {
       firstName: firstName.val().trim(),
@@ -71,7 +71,7 @@ $(document).ready(() => {
       first_name: firstName,
       last_name: lastName
     })
-      .done((r) => {
+      .done(r => {
         if (r.id) {
           window.location.replace('/notes');
         } else {
@@ -79,7 +79,7 @@ $(document).ready(() => {
         }
         // If there's an error, handle it by throwing up a alert
       })
-      .fail((e) => {
+      .fail(e => {
         console.error(e);
       });
   }
