@@ -21,7 +21,6 @@ Users should be able to login and see their respective, (assigned, private, isol
 Application should allow users to create and save notes.
 Application should allow users to view previously saved notes.
 Application should allow users to delete previously saved notes.
-Application should allow users edit (update) current notes.
 Application has an intuitive mobile first user interface.
 Application should work on mobile, tablet and desktop screen sizes.
 Application should have consistent styling across the application.
@@ -37,7 +36,20 @@ Note data based on users should persist note data based on users.
 
 ## Usage
 
-[video demonstration](demo_link...)
+![Desktop Login Page](./assets/desktop_login.png)  
+Desktop login page
+
+![Desktop Home Page](./assets/desktop_home.png)  
+Desktop home page
+
+![Desktop Group Page](./assets/desktop_group.png)  
+Desktop group page
+
+![Mobile Group Page](./assets/mobile_group.png)  
+Mobile group page
+
+![Mobile Profile Page](./assets/mobile_profile.png)  
+Mobile profile page
 
 ## License
 
