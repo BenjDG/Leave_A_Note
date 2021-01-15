@@ -19,11 +19,12 @@ const PORT = process.env.PORT || 8080;
 const SYNC_OPTIONS = {
   force: process.env.NODE_ENV === 'development'
 };
-
 const db = require('./models');
 
 // Creating express app and configuring middleware needed for authentication
 const app = express();
+console.log(`====================NODE_ENV is :${process.env.NODE_ENV}`);
+console.log(`====================SYNC_OPTIONS is :${SYNC_OPTIONS.force}`);
 
 // Set Handlebars as the default template engine.
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
