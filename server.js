@@ -9,20 +9,22 @@ const morgan = require('morgan');
 // Requiring passport as we've configured it
 const passport = require('./config/passport');
 const routes = require('./routes');
-const seedGroups = require('./database/autoSeedGroups');
-const seedUsers = require('./database/autoSeedUsers');
-const seedNotes = require('./database/autoSeedNotes');
+// uncomment here and at the end of the file for seeding the database
+// const seedGroups = require('./database/autoSeedGroups');
+// const seedUsers = require('./database/autoSeedUsers');
+// const seedNotes = require('./database/autoSeedNotes');
 
 // Setting up port and requiring models for syncing
 const PORT = process.env.PORT || 8080;
 const SYNC_OPTIONS = {
-  force: process.env.NODE_ENV === 'test' || 'development'
+  force: process.env.NODE_ENV === 'development'
 };
-
 const db = require('./models');
 
 // Creating express app and configuring middleware needed for authentication
 const app = express();
+console.log(`====================NODE_ENV is :${process.env.NODE_ENV}`);
+console.log(`====================SYNC_OPTIONS is :${SYNC_OPTIONS.force}`);
 
 // Set Handlebars as the default template engine.
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
@@ -56,9 +58,9 @@ app.use(routes);
 // Syncing our database and logging a message to the user upon success
 db.sequelize
   .sync(SYNC_OPTIONS)
-  .then(() => seedGroups())
-  .then(() => seedUsers())
-  .then(() => seedNotes())
+  // .then(() => seedGroups())
+  // .then(() => seedUsers())
+  // .then(() => seedNotes())
   .then(() => {
     app.listen(PORT, () => {
       console.log(
